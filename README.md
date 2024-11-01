@@ -1,7 +1,7 @@
 # Amazon.it Tracking Codes
 This project will retrieve Amazon tracking codes from notification email and put them into Home Assistant ```todo``` entity.
 
-<ins>Since this project relies on Amazon email text, it may stop working if Amazon changes either email text or sender.<ins>
+<ins>Since this project relies on Amazon email text, it may stop working if Amazon changes either email text or sender.</ins> In this case, you need to change IMAP search or automation ReGex according to the changes.
 
 ## Let's start
 Firts of all you need to setup the IMAP integration in Home Asisstant. If you are using Google with 2FA, you need to setup an app password as specified [here](https://www.home-assistant.io/integrations/imap/).
