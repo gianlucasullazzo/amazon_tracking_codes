@@ -15,7 +15,7 @@ Let's assume you have a todo entity called ```todo.amazon_trackcodes```.
 You can create an automation like this:
 
 ```
-alias: add_amazon_tracking_code
+alias: add_amazon_tracking_codes
 description: ""
 triggers:
   - trigger: event
@@ -30,9 +30,12 @@ actions:
     response_variable: codes
     action: todo.get_items
   - variables:
+      order_number: >
+        {{ (trigger.event.data["custom"] | regex_findall("Ordine:
+        #\s*(\d{3}-\d{7}-\d{7})(?:.|\n)*spedizione è: (\w+)"))[0][0] }}
       new_code: >
-        {{ trigger.event.data["custom"] | regex_findall("spedizione è: (\w+).")
-        | first}}
+        {{ (trigger.event.data["custom"] | regex_findall("Ordine:
+        #\s*(\d{3}-\d{7}-\d{7})(?:.|\n)*spedizione è: (\w+)"))[0][1] }}
   - if:
       - condition: template
         value_template: >-
@@ -45,13 +48,13 @@ actions:
           item: |
             {{new_code}}
           description: |
-            {{trigger.event.data["subject"]}}
+            {{order_number}}|{{trigger.event.data["subject"]}}
         target:
           entity_id: todo.amazon_trackcodes
-      - action: notify.gianluca
+      - action: notify.domus
         metadata: {}
         data:
-          message: "{{ trigger.event.data['subject'] }}"
+          message: "{{order_number}}|{{trigger.event.data['subject']}}"
 mode: single
 ```
 
