@@ -2,7 +2,7 @@
 This project will retrieve Amazon tracking codes from notification email and put them into Home Assistant ```todo``` entity.
 
 ## Let's start
-Firts of all you need to setup the IMAP integration in Home Asisstant. If you are using google with 2FA, you need to setup an app password as specified [here](https://www.home-assistant.io/integrations/imap/).
+Firts of all you need to setup the IMAP integration in Home Asisstant. If you are using Google with 2FA, you need to setup an app password as specified [here](https://www.home-assistant.io/integrations/imap/).
 
 - Put your imap details, like user/password/server and port.
 - In the search box put:  ```FROM conferma-spedizione@amazon.it UnSeen UnDeleted```
